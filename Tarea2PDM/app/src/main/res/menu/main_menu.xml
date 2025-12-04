@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_cancelar"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="Cancelar Pedido"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_reenviar"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="Reenviar Pedido"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_modificar"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Modificar Pedido"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_ver_historial"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="Ver Historial"
+        app:showAsAction="never"/>
+</menu>

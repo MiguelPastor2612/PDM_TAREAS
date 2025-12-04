@@ -1,22 +1,23 @@
+// SecondaryActivity.java
 package com.example.tarea2pdm;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class SecondaryActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    // Constantes para las claves de los Intents (Extras)
+public class SecondaryActivity extends AppCompatActivity {  // Cambiar a AppCompatActivity
+
     public static final String EXTRA_PEDIDO_RESUMEN = "com.example.tarea2pdm.PEDIDO_RESUMEN";
     public static final String EXTRA_NOMBRE_CLIENTE = "com.example.tarea2pdm.NOMBRE_CLIENTE";
 
-    // Variables para almacenar los datos recibidos de MainActivity
     private String resumenPedido;
     private String nombreCliente;
 
@@ -25,18 +26,43 @@ public class SecondaryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secondary);
 
-        // 1. Lógica de Recepción de Datos (Extras) de MainActivity
+        // Recibir datos
         Intent intent = getIntent();
         nombreCliente = intent.getStringExtra(EXTRA_NOMBRE_CLIENTE);
         resumenPedido = intent.getStringExtra(EXTRA_PEDIDO_RESUMEN);
 
-        // 2. Configurar el botón para enviar los datos a SummaryActivity
+        setupGuardarListener();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);  // Mismo menú
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_cancelar) {
+            Toast.makeText(this, "Pedido cancelado desde Secondary", Toast.LENGTH_SHORT).show();
+            finish();  // Regresar a MainActivity
+            return true;
+        } else if (id == R.id.action_ver_historial) {
+            Intent intent = new Intent(SecondaryActivity.this, HistorialActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupGuardarListener() {
         Button buttonGuardar = findViewById(R.id.buttonGuardar);
         if (buttonGuardar != null) {
             buttonGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Recolectar datos de contacto
                     EditText editTextEmail = findViewById(R.id.editTextEmail);
                     EditText editTextDireccion = findViewById(R.id.editTextDireccion);
                     CheckBox checkBoxNewsletter = findViewById(R.id.checkBoxNewsletter);
@@ -50,23 +76,14 @@ public class SecondaryActivity extends Activity {
                         return;
                     }
 
-                    // Crear Intent para SummaryActivity y añadir TODOS los Extras
                     Intent summaryIntent = new Intent(SecondaryActivity.this, SummaryActivity.class);
-
-                    // Datos del Pedido (recibidos de MainActivity)
                     summaryIntent.putExtra(SummaryActivity.EXTRA_NOMBRE_CLIENTE, nombreCliente);
                     summaryIntent.putExtra(SummaryActivity.EXTRA_PEDIDO_RESUMEN, resumenPedido);
-
-                    // Datos de Contacto (recolectados en esta actividad)
                     summaryIntent.putExtra(SummaryActivity.EXTRA_EMAIL, email);
                     summaryIntent.putExtra(SummaryActivity.EXTRA_DIRECCION, direccion);
                     summaryIntent.putExtra(SummaryActivity.EXTRA_NEWSLETTER, newsletter);
 
-                    // Iniciar la actividad de resumen
                     startActivity(summaryIntent);
-
-                    // Opcional: Finalizar esta actividad para que el usuario no pueda volver atrás
-                    // finish();
                 }
             });
         }

@@ -25,6 +25,7 @@
 
         <activity android:name=".SecondaryActivity" />
         <activity android:name=".SummaryActivity" />
+        <activity android:name=".HistorialActivity" />
     </application>
 
 </manifest>
