@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Formulario de Contacto y Compras"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Leyenda de Información -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Por favor, introduce tus datos para futuras compras."
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Caja de Texto (Email) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo Electrónico:"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ejemplo@dominio.com"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Caja de Texto (Dirección) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dirección de Envío:"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/editTextDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calle, número, colonia"
+            android:inputType="textPostalAddress"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- CheckBox (Suscripción a Newsletter) -->
+        <CheckBox
+            android:id="@+id/checkBoxNewsletter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deseo suscribirme al boletín de noticias"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Botón -->
+        <Button
+            android:id="@+id/buttonGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar Información"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
